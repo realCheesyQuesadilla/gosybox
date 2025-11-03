@@ -1,4 +1,4 @@
-<img width="250" height="300" alt="image" src="https://github.com/user-attachments/assets/7688dc9a-f46e-41a1-803a-681b37113c64" />
+<img width="250" height="300" align="center" alt="image" src="https://github.com/user-attachments/assets/7688dc9a-f46e-41a1-803a-681b37113c64" />
 
 # gosybox
 
