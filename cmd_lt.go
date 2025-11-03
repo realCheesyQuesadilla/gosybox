@@ -1,11 +1,13 @@
-//go:build !no_ls
+//go:build !no_lt
 
 package main
 
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"sort"
+	"syscall"
 )
 
 func init() {
@@ -16,7 +18,7 @@ func init() {
 	})
 }
 
-// handleLs implements the 'ls' command in-process (no forking).
+// handleLt implements the 'lt' command in-process (no forking).
 func handleLt(args []string) {
 	var dir string
 	if len(args) > 0 {
@@ -35,18 +37,27 @@ func handleLt(args []string) {
 		infoJ, _ := files[j].Info()
 		return infoI.ModTime().Before(infoJ.ModTime())
 	})
+	fmt.Println("Name  Size  ModTime  Perms  Owner  Group")
+	fmt.Println("----------------------------------------")
 	for _, file := range files {
 		name := file.Name()
+		info, err := file.Info()
+		if err != nil {
+			fmt.Printf("%s: (error reading info)\n", file.Name())
+			continue
+		}
+		size := info.Size()
+		modTime := info.ModTime()
+		perms := info.Mode()
+		owner := info.Sys().(*syscall.Stat_t).Uid
+		group := info.Sys().(*syscall.Stat_t).Gid
 		// Mark directories with a trailing /
 		if file.IsDir() {
-			info, err := file.Info()
-			if err != nil {
-				fmt.Printf("%s/ (error reading info)\n", file.Name())
-			} else {
-				fmt.Printf("%s/  %s\n", name, info.ModTime().Format("2006-01-02 15:04:05"))
-			}
+			name = filepath.Join(name, "")
+			fmt.Printf("%s/  %d  %s  %s  %d  %d\n", name, size, modTime.Format("2006-01-02 15:04:05"), perms.String(), owner, group)
 		} else {
-			fmt.Println(name)
+			fmt.Printf("%s  %d  %s  %s  %d  %d\n", name, size, modTime.Format("2006-01-02 15:04:05"), perms.String(), owner, group)
+
 		}
 	}
 }
