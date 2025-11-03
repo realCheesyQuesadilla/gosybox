@@ -1,4 +1,5 @@
-![gosybox](https://github.com/realCheesyQuesadilla/gosybox/blob/main/gosybox.jpg | width=100)
+<img width="784" height="1168" alt="image" src="https://github.com/user-attachments/assets/7688dc9a-f46e-41a1-803a-681b37113c64" />
+
 # gosybox
 
 A lightweight, modular BusyBox replacement written in Go. gosybox provides essential Unix utilities in a single binary, with the ability to customize which commands are included at compile time using Go build tags.
