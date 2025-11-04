@@ -102,11 +102,8 @@ go build -tags no_lt -o gosybox
 # Exclude help command
 go build -tags no_help -o gosybox
 
-# Exclude exit command
-go build -tags no_exit -o gosybox
-
 # Exclude multiple commands
-go build -tags "no_ls no_lt no_help no_exit" -o gosybox
+go build -tags "no_ls no_lt no_help" -o gosybox
 ```
 
 This allows you to create minimal builds with only the commands you need, reducing binary size.
@@ -117,7 +114,6 @@ Each command is in its own file with a build tag:
 - `cmd_ls.go` - includes `ls` unless `no_ls` tag is set
 - `cmd_lt.go` - includes `lt` unless `no_lt` tag is set
 - `cmd_help.go` - includes `help` unless `no_help` tag is set
-- `cmd_exit.go` - includes `exit` unless `no_exit` tag is set
 
 Commands register themselves in `init()` functions, which run automatically when the package loads.
 
