@@ -1,5 +1,3 @@
-<img width="250" height="300" align="center" alt="image" src="https://github.com/user-attachments/assets/7688dc9a-f46e-41a1-803a-681b37113c64" />  
-
 # gosybox
 
 A lightweight, modular BusyBox replacement written in Go. gosybox provides essential Unix utilities in a single binary, with the ability to customize which commands are included at compile time using Go build tags.
@@ -102,8 +100,11 @@ go build -tags no_lt -o gosybox
 # Exclude help command
 go build -tags no_help -o gosybox
 
+# Exclude exit command
+go build -tags no_exit -o gosybox
+
 # Exclude multiple commands
-go build -tags "no_ls no_lt no_help" -o gosybox
+go build -tags "no_ls no_lt no_help no_exit" -o gosybox
 ```
 
 This allows you to create minimal builds with only the commands you need, reducing binary size.
@@ -114,6 +115,7 @@ Each command is in its own file with a build tag:
 - `cmd_ls.go` - includes `ls` unless `no_ls` tag is set
 - `cmd_lt.go` - includes `lt` unless `no_lt` tag is set
 - `cmd_help.go` - includes `help` unless `no_help` tag is set
+- `cmd_exit.go` - includes `exit` unless `no_exit` tag is set
 
 Commands register themselves in `init()` functions, which run automatically when the package loads.
 
@@ -268,3 +270,4 @@ Hosted under AGPLv3 (GNU Affero General Public License v3.0)
 ## Acknowledgments
 
 Inspired by BusyBox, which provides many Unix utilities in a single executable.
+

@@ -16,7 +16,6 @@ func init() {
 }
 
 func handleExit(args []string) {
-	fmt.Println("Goodbye!")
+	fmt.Println("Thanks for using gosybox!")
 	os.Exit(0)
 }
-

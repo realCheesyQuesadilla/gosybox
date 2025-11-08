@@ -54,7 +54,7 @@ func runInteractiveMode() {
 
 		// Handle exit/quit commands
 		if cmdName == "exit" || cmdName == "quit" {
-			fmt.Println("Goodbye!")
+			fmt.Println("Thanks for using gosybox!")
 			os.Exit(0)
 			return
 		}
