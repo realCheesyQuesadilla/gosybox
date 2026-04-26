@@ -1,0 +1,39 @@
+# Binaries
+*.exe
+*.bin
+gosybox
+
+# Build artifacts
+*/bin/
+*/obj/
+*/dist/
+
+# Test coverage
+coverage.out
+coverage.html
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Go toolchain artifacts
+go.sum
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+*.log
+*.tmp

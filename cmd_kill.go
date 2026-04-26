@@ -29,7 +29,7 @@ func handleKill(args []string) {
 	}
 
 	// SIGTERM will be the default
-	var signal syscall.Signal = syscall.SIGTERM 
+	var signal syscall.Signal = syscall.SIGTERM
 	var pid int
 
 	if len(args) == 1 {
